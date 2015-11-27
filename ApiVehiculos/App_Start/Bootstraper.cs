@@ -1,7 +1,6 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Web.Http;
-using BaseRepositorio.Repositorio;
+using BaseRepositorio.ViewModel;
 using Microsoft.Practices.Unity;
 using RepositorioVehiculos;
 using Unity.WebApi;
@@ -13,8 +12,8 @@ namespace ApiVehiculos
         public static void Init(UnityContainer container)
         {
             container.RegisterType<DbContext, Vehiculos05Entities>();
-            container.RegisterType<GenericRepository<Type>>();
-            container.RegisterType<GenericRepository<Vehicle>>();
+            container.RegisterType<IViewModel<Type>, TipoVehiculoViewModel>();
+            container.RegisterType<IViewModel<Vehicle>, VehiculoViewModel>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
 
